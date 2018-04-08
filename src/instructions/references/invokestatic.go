@@ -13,6 +13,13 @@ func (self *INVOKE_STATIC) Execute(frame *rtda.Frame) {
 	methodRef := cp.GetConstant(self.Index).(*heap.MethodRef)
 	resolveMethod := methodRef.ResolvedMethod()
 
+	class := resolveMethod.Class()
+	if !class.InitStarted() {
+		frame.RevertNextPC()
+		base.InitClass(frame.Thread(), class)
+		return
+	}
+
 	if !resolveMethod.IsStatic() {
 		panic("java.lang.IncpmpatibaleClassChangeErroe")
 	}

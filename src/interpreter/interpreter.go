@@ -37,9 +37,9 @@ func loop(thread *rtda.Thread, logInst bool) {
 		}
 
 		inst.Execute(frame)
-		if thread.IsStackEmpty() {
+		/*if thread.IsStackEmpty() {
 			break
-		}
+		}*/
 	}
 }
 

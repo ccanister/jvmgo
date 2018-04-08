@@ -40,6 +40,10 @@ func (self *ClassMember) IsAbstract() bool {
 	return 0 != self.accessFlags & ACC_ABSTRACT
 }
 
+func (self *ClassMember) IsNative() bool {
+	return 0 != self.accessFlags & ACC_NATIVE
+}
+
 func (self *ClassMember) IsAccessibleTo(d *Class) bool {
 	if self.IsPublic() {
 		return true
